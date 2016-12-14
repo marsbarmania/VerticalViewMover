@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					5B3A297A1E01241D00233228 = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = B54D6YW342;
 						ProvisioningStyle = Automatic;
 					};
 					5B3A298E1E01241D00233228 = {
@@ -410,6 +411,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B54D6YW342;
 				INFOPLIST_FILE = VerticalViewMover/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MRS.VerticalViewMover;
@@ -422,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B54D6YW342;
 				INFOPLIST_FILE = VerticalViewMover/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = MRS.VerticalViewMover;
