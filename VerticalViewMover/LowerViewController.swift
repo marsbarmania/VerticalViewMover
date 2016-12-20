@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  LowerViewController.swift
 //  VerticalViewMover
 //
 //  Created by NakashimaHiroki on 2016/12/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class LowerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

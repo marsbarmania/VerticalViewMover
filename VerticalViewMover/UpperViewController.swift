@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  UpperViewController.swift
 //  VerticalViewMover
 //
 //  Created by NakashimaHiroki on 2016/12/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class UpperViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
