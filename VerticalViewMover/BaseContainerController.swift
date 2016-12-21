@@ -69,6 +69,26 @@ class BaseContainerController: UIViewController{
             }, completion: nil)
         }
     }
+    
+    func rotate(){
+        /*UIView.animate(withDuration: 1.0, animations: { () -> Void in
+            self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI))
+            self.arrow.layoutSubviews()
+        }) { (succeed) -> Void in
+            print("aaaaaaaaaa")
+        }*/
+        
+        var angle:CGFloat = 0
+        if self.scDirection == .Down {
+            angle = CGFloat(M_PI)
+        }else{
+            angle = 0
+        }
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            self.arrow.transform = CGAffineTransform(rotationAngle: angle)
+        })
+    }
 
 }
 
@@ -113,12 +133,14 @@ extension BaseContainerController: UIScrollViewDelegate {
     
     func setViewElementsOf(_ sv:UIScrollView) {
         let centerEdge = sv.contentOffset.y
+        let stopVerticalY = centerY*2 - 40
         print("centerEdge = \(centerEdge)")
         if displayingView == BaseContainerController.Side.Up {
             print("Upper Upper Upper Upper Upper ")
             if centerEdge >= self.centerY {
                 print("Change!!! Up --> down")
-                goToPoint(centerY*2)
+                goToPoint(stopVerticalY)
+                rotate()
                 self.displayingView = BaseContainerController.Side.Low
             }else{
                 print("Not change 1")
@@ -129,10 +151,11 @@ extension BaseContainerController: UIScrollViewDelegate {
             if centerEdge < self.centerY {
                 print("Change!!! Down --> Up")
                 goToPoint(0)
+                rotate()
                 self.displayingView = BaseContainerController.Side.Up
             }else{
                 print("Not change 2")
-                goToPoint(centerY*2)
+                goToPoint(stopVerticalY)
             }
         }
     }
