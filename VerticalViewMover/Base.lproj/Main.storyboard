@@ -48,6 +48,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="lFq-vr-vlC" firstAttribute="centerX" secondItem="9Jc-vf-sqR" secondAttribute="centerX" id="JgF-VP-IMI"/>
                                             <constraint firstItem="JgX-Zb-bbb" firstAttribute="centerX" secondItem="9Jc-vf-sqR" secondAttribute="centerX" id="K4G-m0-Mel"/>
@@ -71,6 +72,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXo-rv-FYn">
                                 <rect key="frame" x="110" y="35" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="ARf-0Q-FoL"/>
                                     <constraint firstAttribute="height" constant="100" id="IWf-pd-Jtq"/>

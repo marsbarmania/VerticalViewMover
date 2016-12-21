@@ -60,11 +60,12 @@ class BaseContainerController: UIViewController,UIScrollViewDelegate {
     
     func goToPoint(destValue: CGFloat) {
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.22, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 self.scrollView.contentOffset.y = destValue
             }, completion: nil)
         }
     }
+    
     
     // ----------------------------------------------
     // MARK: - UIScrollViewDelegate
@@ -81,7 +82,7 @@ class BaseContainerController: UIViewController,UIScrollViewDelegate {
     
     // スクロールで指が離れたところ
     func scrollViewDidEndDragging(_ scrollView: UIScrollView,willDecelerate decelerate: Bool){
-        //print("スクロールで指が離れたところ------>CenterY = \(self.centerY) frame: \(scrollView.contentOffset)")
+        //print("スクロールで指が離れたところ------>")
         setViewElementsOf(sv: scrollView)
     }
     
