@@ -8,15 +8,16 @@
 
 import UIKit
 
-class BaseContainerController: UIViewController,UIScrollViewDelegate {
-    
+
+class BaseContainerController: UIViewController{
+    // class stuff
     enum Side: Int {
         case Up = 0
         case Low = 1
     }
     
     lazy var centerY: CGFloat = 0
-    private var displayingView = BaseContainerController.Side.Up {
+    internal var displayingView = BaseContainerController.Side.Up {
         didSet {
             var bgColor = UIColor.clear
             if self.displayingView == BaseContainerController.Side.Up {
@@ -27,9 +28,12 @@ class BaseContainerController: UIViewController,UIScrollViewDelegate {
             self.positionDebugView.backgroundColor = bgColor
         }
     }
+    
+    internal var scDirection: ScrollDirection = .None
     private var upperView: UpperViewController?
     private var lowerView: LowerViewController?
     
+    @IBOutlet weak var arrow: UIImageView!
 
     @IBOutlet weak var positionDebugView: UIView!
     @IBOutlet weak var scrollView: UIScrollView! {
@@ -58,14 +62,26 @@ class BaseContainerController: UIViewController,UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func goToPoint(destValue: CGFloat) {
+    func goToPoint(_ destValue: CGFloat) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.22, delay: 0, options: UIViewAnimationOptions.curveEaseIn, animations: {
                 self.scrollView.contentOffset.y = destValue
             }, completion: nil)
         }
     }
+
+}
+
+extension BaseContainerController: UIScrollViewDelegate {
     
+    enum ScrollDirection {
+        case None
+        case Right
+        case Left
+        case Up
+        case Down
+        case Crazy
+    }
     
     // ----------------------------------------------
     // MARK: - UIScrollViewDelegate
@@ -74,49 +90,50 @@ class BaseContainerController: UIViewController,UIScrollViewDelegate {
     
     // スクロール中
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height
-        if (bottomEdge >= scrollView.contentSize.height){
-            // we are at the end
+        
+        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
+            //print("up")
+            self.scDirection = .Up
+        } else {
+            //print("down")
+            self.scDirection = .Down
         }
     }
     
     // スクロールで指が離れたところ
     func scrollViewDidEndDragging(_ scrollView: UIScrollView,willDecelerate decelerate: Bool){
         //print("スクロールで指が離れたところ------>")
-        setViewElementsOf(sv: scrollView)
+        setViewElementsOf(scrollView)
     }
     
     // スクロールストップ
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
-        setViewElementsOf(sv: scrollView)
+        setViewElementsOf(scrollView)
     }
     
-    func setViewElementsOf(sv:UIScrollView) {
+    func setViewElementsOf(_ sv:UIScrollView) {
         let centerEdge = sv.contentOffset.y
         print("centerEdge = \(centerEdge)")
         if displayingView == BaseContainerController.Side.Up {
             print("Upper Upper Upper Upper Upper ")
             if centerEdge >= self.centerY {
                 print("Change!!! Up --> down")
-                goToPoint(destValue: centerY*2)
+                goToPoint(centerY*2)
                 self.displayingView = BaseContainerController.Side.Low
             }else{
                 print("Not change 1")
-                goToPoint(destValue: 0)
+                goToPoint(0)
             }
         }else{
             print("Lower Lower Lower Lower Lower ")
             if centerEdge < self.centerY {
                 print("Change!!! Down --> Up")
-                goToPoint(destValue: 0)
+                goToPoint(0)
                 self.displayingView = BaseContainerController.Side.Up
             }else{
                 print("Not change 2")
-                goToPoint(destValue: centerY*2)
+                goToPoint(centerY*2)
             }
         }
     }
-
-
 }
-

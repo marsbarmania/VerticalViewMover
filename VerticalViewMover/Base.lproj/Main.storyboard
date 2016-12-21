@@ -42,8 +42,24 @@
                                             </containerView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFq-vr-vlC">
                                                 <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="siE-MU-Ihb">
+                                                        <rect key="frame" x="148" y="15" width="24" height="10"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Na5-XQ-8cO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="24" height="10"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="10" id="Cbh-Yq-ELo"/>
+                                                                    <constraint firstAttribute="width" constant="24" id="j6i-MG-Ew4"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="siE-MU-Ihb" firstAttribute="centerY" secondItem="lFq-vr-vlC" secondAttribute="centerY" id="Iju-RQ-xjA"/>
+                                                    <constraint firstItem="siE-MU-Ihb" firstAttribute="centerX" secondItem="lFq-vr-vlC" secondAttribute="centerX" id="Tli-y9-pRD"/>
                                                     <constraint firstAttribute="height" constant="40" id="ojO-K0-iwJ"/>
                                                 </constraints>
                                             </view>
@@ -100,6 +116,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="arrow" destination="Na5-XQ-8cO" id="QgZ-1B-96H"/>
                         <outlet property="contentView" destination="9Jc-vf-sqR" id="Gn6-Gq-fda"/>
                         <outlet property="positionDebugView" destination="uXo-rv-FYn" id="qJR-pt-50y"/>
                         <outlet property="scrollView" destination="Lk1-RD-6Me" id="c2g-YD-YR3"/>
@@ -170,4 +187,7 @@
             <point key="canvasLocation" x="-386" y="902"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow" width="24" height="10"/>
+    </resources>
 </document>
