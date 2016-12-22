@@ -16,7 +16,9 @@ class BaseContainerController: UIViewController{
         case Low = 1
     }
     
-    lazy var centerY: CGFloat = 0
+    lazy var centerY: CGFloat           = 0
+    internal var rotateOffset:CGFloat   = CGFloat(120)
+    internal var rotateOffset2:CGFloat  = CGFloat(200)
     internal var displayingView = BaseContainerController.Side.Up {
         didSet {
             var bgColor = UIColor.clear
@@ -38,14 +40,15 @@ class BaseContainerController: UIViewController{
     @IBOutlet weak var positionDebugView: UIView!
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
-            //scrollView.contentSize = CGSize(width: 700, height: 1000)
             scrollView.delegate = self
+            //scrollView.contentSize = CGSize(width: 700, height: 1000)
             //scrollView.minimumZoomScale = 0.03
             //scrollView.maximumZoomScale = 1.0
-            
         }
     }
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var directonContainerViewHeight: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,24 +73,25 @@ class BaseContainerController: UIViewController{
         }
     }
     
-    func rotate(){
-        /*UIView.animate(withDuration: 1.0, animations: { () -> Void in
-            self.arrow.transform = CGAffineTransform(rotationAngle: CGFloat(180 * M_PI))
-            self.arrow.layoutSubviews()
-        }) { (succeed) -> Void in
-            print("aaaaaaaaaa")
-        }*/
+    func rotate(_ direction: ScrollDirection){
         
         var angle:CGFloat = 0
-        if self.scDirection == .Down {
+        
+        switch direction {
+        case .Down:
             angle = CGFloat(M_PI)
-        }else{
+        case .Up:
+            angle = 0
+        default:
             angle = 0
         }
         
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.arrow.transform = CGAffineTransform(rotationAngle: angle)
-        })
+            self.arrow.layoutSubviews()
+        }){ (succeed) -> Void in
+            //print("succeed ====> \(succeed)")
+        }
     }
 
 }
@@ -102,6 +106,7 @@ extension BaseContainerController: UIScrollViewDelegate {
         case Down
         case Crazy
     }
+
     
     // ----------------------------------------------
     // MARK: - UIScrollViewDelegate
@@ -112,11 +117,29 @@ extension BaseContainerController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
-            //print("up")
             self.scDirection = .Up
         } else {
-            //print("down")
             self.scDirection = .Down
+        }
+        
+        let theEdge  = scrollView.contentOffset.y
+        let theEdge2 = scrollView.contentOffset.y - rotateOffset2
+        
+        if self.scDirection == .Up {
+            // 上向き
+            if theEdge2 <= self.centerY {
+                rotate(.Up)
+            }else{
+                rotate(.Down)
+            }
+            
+        }else{
+            // 下向きにスクロール
+            if theEdge > self.rotateOffset {
+                rotate(.Down)
+            }else{
+                rotate(.Up)
+            }
         }
     }
     
@@ -128,33 +151,32 @@ extension BaseContainerController: UIScrollViewDelegate {
     
     // スクロールストップ
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
-        setViewElementsOf(scrollView)
+        // Swipe状態になっている場合は、早めに
+        setViewElementsOf(scrollView, swipe: true)
     }
     
-    func setViewElementsOf(_ sv:UIScrollView) {
+    func setViewElementsOf(_ sv:UIScrollView, swipe:Bool = false) {
         let centerEdge = sv.contentOffset.y
-        let stopVerticalY = centerY*2 - 40
-        print("centerEdge = \(centerEdge)")
+        let stopVerticalY = centerY*2 - self.directonContainerViewHeight.constant
+        
+        var edge = self.centerY
+        if swipe {
+            edge /= 2
+        }
+        
         if displayingView == BaseContainerController.Side.Up {
-            print("Upper Upper Upper Upper Upper ")
-            if centerEdge >= self.centerY {
-                print("Change!!! Up --> down")
+            
+            if centerEdge >= edge {
                 goToPoint(stopVerticalY)
-                rotate()
                 self.displayingView = BaseContainerController.Side.Low
             }else{
-                print("Not change 1")
                 goToPoint(0)
             }
         }else{
-            print("Lower Lower Lower Lower Lower ")
-            if centerEdge < self.centerY {
-                print("Change!!! Down --> Up")
+            if centerEdge < edge {
                 goToPoint(0)
-                rotate()
                 self.displayingView = BaseContainerController.Side.Up
             }else{
-                print("Not change 2")
                 goToPoint(stopVerticalY)
             }
         }

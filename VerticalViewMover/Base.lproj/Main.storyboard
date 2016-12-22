@@ -86,25 +86,25 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXo-rv-FYn">
-                                <rect key="frame" x="110" y="35" width="100" height="100"/>
+                                <rect key="frame" x="17" y="17" width="30" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="ARf-0Q-FoL"/>
-                                    <constraint firstAttribute="height" constant="100" id="IWf-pd-Jtq"/>
+                                    <constraint firstAttribute="width" constant="30" id="ARf-0Q-FoL"/>
+                                    <constraint firstAttribute="height" constant="30" id="IWf-pd-Jtq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
+                                        <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="uXo-rv-FYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="233-tt-dae"/>
+                            <constraint firstItem="uXo-rv-FYn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.2" id="233-tt-dae"/>
                             <constraint firstItem="9Jc-vf-sqR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="2AE-7h-ijw"/>
-                            <constraint firstItem="uXo-rv-FYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.3" id="COk-6J-85C"/>
+                            <constraint firstItem="uXo-rv-FYn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.1118" id="COk-6J-85C"/>
                             <constraint firstItem="JgX-Zb-bbb" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" constant="-40" id="L5c-s2-rv3"/>
                             <constraint firstItem="JgX-Zb-bbb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="SD7-tg-y97"/>
                             <constraint firstItem="lFq-vr-vlC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="c5u-r8-gr5"/>
@@ -118,6 +118,7 @@
                     <connections>
                         <outlet property="arrow" destination="Na5-XQ-8cO" id="QgZ-1B-96H"/>
                         <outlet property="contentView" destination="9Jc-vf-sqR" id="Gn6-Gq-fda"/>
+                        <outlet property="directonContainerViewHeight" destination="ojO-K0-iwJ" id="ito-R4-hZg"/>
                         <outlet property="positionDebugView" destination="uXo-rv-FYn" id="qJR-pt-50y"/>
                         <outlet property="scrollView" destination="Lk1-RD-6Me" id="c2g-YD-YR3"/>
                     </connections>

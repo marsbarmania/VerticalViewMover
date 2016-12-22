@@ -102,11 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				5BCC9A8E1E026D7F00B9E092 /* Protocal */,
-				5BCC9A8A1E026D3100B9E092 /* Model */,
 				5BCC9A881E026CF300B9E092 /* Storyboards */,
 				5BCC9A8B1E026D4900B9E092 /* Resources */,
 				5BCC9A8C1E026D5900B9E092 /* Controllers */,
-				5B9EFB4E1E07B55100766DC6 /* Views */,
 				5BCC9A891E026D1D00B9E092 /* Support Files */,
 			);
 			path = VerticalViewMover;
@@ -130,13 +128,6 @@
 			path = VerticalViewMoverUITests;
 			sourceTree = "<group>";
 		};
-		5B9EFB4E1E07B55100766DC6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		5BCC9A881E026CF300B9E092 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,13 +143,6 @@
 				5B3A298A1E01241D00233228 /* Info.plist */,
 			);
 			name = "Support Files";
-			sourceTree = "<group>";
-		};
-		5BCC9A8A1E026D3100B9E092 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		5BCC9A8B1E026D4900B9E092 /* Resources */ = {
